@@ -107,3 +107,15 @@ d. kita tambahkan satu script lagi yaitu "lint"
   ...rest
 }
 ```
+
+kalau udah bisa langsung jalanin npm run lint buat nge lint semua file yang di tentuin di script lint tadi
+
+kita bisa pake pre-commit hooks, setiap kali kita sebelum commit nanti akan automatis di lint.
+
+untuk menambahkan pre-commit hooks pake yg namanya husky sama lint-staged kita bisa langsung jalanin command
+
+`npx mrm@2 lint-staged`
+
+terus di `y` in aja
+
+kalau udah di add. di commit, langsung rasakan perubahannya
