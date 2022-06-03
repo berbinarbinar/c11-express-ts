@@ -50,19 +50,19 @@ Selanjutnya kita bisa langsung setup server
 Pembuatan server menggunakan Express yang ditulis menggunakan TypeScript itu hanya sesimple dengan memberitahu bahwa req: Request, res: Response. Namun ini hanyalah konfigurasi yang simple atau konfigurasi dasar.
 
 ```ts
-import * as express from 'express';
-import { Request, Response } from 'express';
-const PORT = 4000;
+import * as express from 'express'
+import { Request, Response } from 'express'
+const PORT = 4000
 
-const app = express();
+const app = express()
 
 app.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'ini contoh request get ke /' });
-});
+  res.json({ message: 'ini contoh request get ke /' })
+})
 
 app.listen(PORT, () => {
-  console.log(PORT);
-});
+  console.log(PORT)
+})
 ```
 
 setelah menulis kode di atas, kita perlu mengubah atau menambahkan scripts pada `package.json` dimana kita perlu menambahkan scripts untuk build (compile) file typscript menjadi javascript. kita bisa menambahkan
@@ -80,3 +80,30 @@ apabila kita menjalankan `npm run build` keseluruhan file `.ts` akan dicompile m
 
 apabila kita ingin menjalankan servernya, kita tidak bisa menjalankan command `node index.ts` karena dia masih typescript, maka dari itu kita harus menjalankannya dari hasil compiling yang berada pada folder sesuai dengan yang ada di konfigurasi `outDir` di `tsconfig.json`. contoh di project ini kita bisa menjalankan dengan
 `node build/index.js`
+
+## SETUP LINTER
+
+1. Dari VSCode -> Preferences
+   a. Format on Save
+   b. Prettier config dibikin true
+   c. kita bikin di root folder `.prettierrc`
+
+```json
+{
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "arrowParens": "always"
+}
+```
+
+d. kita tambahkan satu script lagi yaitu "lint"
+
+```json
+"scripts": {
+  ...,
+   "lint": "prettier --write \"src/**/*{.js,.ts}\""
+  ...rest
+}
+```
