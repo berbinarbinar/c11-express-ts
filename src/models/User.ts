@@ -1,14 +1,14 @@
-import { Entity, Column } from 'typeorm';
-import { BaseEntity } from './BaseEntity';
+import { Entity, Column } from 'typeorm'
+import { BaseEntity } from './BaseEntity'
 
 @Entity()
 export class User extends BaseEntity {
   @Column({ type: 'varchar', nullable: true, unique: true })
-  userName: string;
+  userName: string
 
   @Column()
-  lastName: string;
+  lastName: string
 
   @Column()
-  age: number;
+  age: number
 }

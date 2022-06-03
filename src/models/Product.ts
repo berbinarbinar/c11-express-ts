@@ -1,18 +1,18 @@
-import { Column, Entity, CreateDateColumn } from 'typeorm';
-import { BaseEntity } from './BaseEntity';
+import { Column, Entity, CreateDateColumn } from 'typeorm'
+import { BaseEntity } from './BaseEntity'
 
 @Entity()
 export class Product extends BaseEntity {
   @Column()
-  name: string;
+  name: string
 
   @Column({ type: 'bigint' })
-  price: number;
+  price: number
 
   @Column()
-  stock: number;
+  stock: number
 
   @Column()
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt: Date
 }
