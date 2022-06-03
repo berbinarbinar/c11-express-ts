@@ -1,25 +1,19 @@
 import { config } from 'dotenv';
-import express, { Request, Response } from 'express';
-const PORT = process.env.PORT || 4000;
+import { app } from './configureExpress';
+import { BaseEntity } from 'typeorm';
+import { createTypeORMConn } from './src/utils/createTypeORMConnection';
 config();
 
-const app = express();
+const PORT = process.env.PORT || 4000;
 
-app.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'hello world' });
-});
+async function main(): Promise<void> {
+  const connection = await createTypeORMConn();
+  BaseEntity.useConnection(connection);
 
-app.get('/foods', (req: Request, res: Response) => {
-  res.json([
-    {
-      name: 'Bakso',
-    },
-    {
-      name: 'Somay',
-    },
-  ]);
-});
+  app.listen(PORT, () => {
+    console.log(`server is in ${process.env.NODE_ENV} mode`);
+    console.log(`server is running on PORT ${PORT} `);
+  });
+}
 
-app.listen(PORT, () => {
-  console.log(`server is listening on ${PORT}`);
-});
+main();
